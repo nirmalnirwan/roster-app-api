@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/roster-api-app/bin
+/roster-api-app/Migrations
+/roster-api-app/obj
