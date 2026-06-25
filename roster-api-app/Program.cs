@@ -19,7 +19,7 @@ var allowedOrigins = new[] {
     "http://localhost:44324", // (if frontend calls this directly)
     "http://localhost:7060",
     "https://next-go.fly.dev",
-    "https://roster-app-web.netlify.app"
+    "https://roster-app-web.netlify.app" 
 };
 
 builder.Services.AddCors(options =>
