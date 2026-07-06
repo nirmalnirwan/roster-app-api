@@ -38,6 +38,7 @@ public class ResidentService : IResidentService
             RoomNumber = dto.RoomNumber,
             Building = dto.Building,
             CleaningFrequency = dto.CleaningFrequency,
+            Status = dto.Status,
             Notes = dto.Notes,
             UnitId = dto.UnitId,
             ApartmentId = dto.ApartmentId
@@ -59,6 +60,7 @@ public class ResidentService : IResidentService
         resident.RoomNumber = dto.RoomNumber;
         resident.Building = dto.Building;
         resident.CleaningFrequency = dto.CleaningFrequency;
+        resident.Status = dto.Status;
         resident.Notes = dto.Notes;
         resident.UnitId = dto.UnitId;
         resident.ApartmentId = dto.ApartmentId;
@@ -67,7 +69,11 @@ public class ResidentService : IResidentService
 
     public async Task DeleteAsync(int id)
     {
-        await _repository.DeleteAsync(id);
+        var resident = await _repository.GetByIdAsync(id);
+        if (resident == null) throw new KeyNotFoundException("Resident not found");
+
+        resident.Status = "Inactive";
+        await _repository.UpdateAsync(resident);
     }
 
     public async Task<IEnumerable<AssignableAreaDto>> GetAssignableAreasAsync()
@@ -93,6 +99,7 @@ public class ResidentService : IResidentService
             RoomNumber = resident.RoomNumber,
             Building = resident.Building,
             CleaningFrequency = resident.CleaningFrequency,
+            Status = resident.Status,
             Notes = resident.Notes,
             UnitId = resident.UnitId,
             UnitName = resident.Unit?.Name,
@@ -128,6 +135,17 @@ public class ResidentService : IResidentService
         dto.RoomNumber = dto.RoomNumber.Trim();
         dto.Building = dto.Building.Trim();
         dto.CleaningFrequency = dto.CleaningFrequency.Trim();
+        dto.Status = string.IsNullOrWhiteSpace(dto.Status) ? "Active" : dto.Status.Trim();
         dto.Notes = dto.Notes.Trim();
+
+        if (!string.Equals(dto.Status, "Active", StringComparison.OrdinalIgnoreCase) &&
+            !string.Equals(dto.Status, "Inactive", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException("Resident status must be Active or Inactive.");
+        }
+
+        dto.Status = string.Equals(dto.Status, "Inactive", StringComparison.OrdinalIgnoreCase)
+            ? "Inactive"
+            : "Active";
     }
 }

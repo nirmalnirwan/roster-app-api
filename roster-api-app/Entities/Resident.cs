@@ -7,6 +7,7 @@ public class Resident
     public string RoomNumber { get; set; } = string.Empty;
     public string Building { get; set; } = string.Empty;
     public string CleaningFrequency { get; set; } = string.Empty; // Daily, Weekly, Fortnightly, Monthly
+    public string Status { get; set; } = "Active";
     public string Notes { get; set; } = string.Empty;
     public int? UnitId { get; set; }
     public Unit? Unit { get; set; }

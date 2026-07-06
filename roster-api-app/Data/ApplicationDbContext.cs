@@ -151,6 +151,12 @@ public class ApplicationDbContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Resident>()
+            .Property(r => r.Status)
+            .HasMaxLength(20)
+            .HasDefaultValue("Active")
+            .IsRequired();
+
+        modelBuilder.Entity<Resident>()
             .HasOne(r => r.Unit)
             .WithMany(u => u.Residents)
             .HasForeignKey(r => r.UnitId)

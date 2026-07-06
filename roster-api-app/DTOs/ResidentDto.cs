@@ -7,6 +7,7 @@ public class ResidentDto
     public string RoomNumber { get; set; } = string.Empty;
     public string Building { get; set; } = string.Empty;
     public string CleaningFrequency { get; set; } = string.Empty;
+    public string Status { get; set; } = string.Empty;
     public string Notes { get; set; } = string.Empty;
     public int? UnitId { get; set; }
     public string? UnitName { get; set; }

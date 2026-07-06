@@ -22,6 +22,7 @@ public class RosterTaskDto
     public string AreaName { get; set; } = string.Empty;
     public int? ResidentId { get; set; }
     public string? ResidentName { get; set; }
+    public string? ResidentStatus { get; set; }
     public DateTime ScheduledDate { get; set; }
     public TimeSpan StartTime { get; set; }
     public TimeSpan EndTime { get; set; }

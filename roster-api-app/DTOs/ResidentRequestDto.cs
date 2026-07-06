@@ -15,6 +15,10 @@ public class ResidentRequestDto
     [MaxLength(50)]
     public string CleaningFrequency { get; set; } = string.Empty;
 
+    [Required]
+    [MaxLength(20)]
+    public string Status { get; set; } = "Active";
+
     public string Notes { get; set; } = string.Empty;
     public int? UnitId { get; set; }
     public int? ApartmentId { get; set; }

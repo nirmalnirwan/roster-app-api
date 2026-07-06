@@ -290,6 +290,7 @@ public class RosterService : IRosterService
             AreaName = areaName,
             ResidentId = task.ResidentId,
             ResidentName = task.Resident?.Name,
+            ResidentStatus = task.Resident?.Status,
             ScheduledDate = task.ScheduledDate,
             StartTime = task.StartTime,
             EndTime = task.EndTime,
